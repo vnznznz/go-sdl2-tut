@@ -1,3 +1,5 @@
+// Event Driven Programming
+// Adapted from http://lazyfoo.net/tutorials/SDL/03_event_driven_programming/index.php
 package main
 
 import (
