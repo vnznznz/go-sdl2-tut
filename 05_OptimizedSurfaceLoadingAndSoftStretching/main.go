@@ -54,6 +54,9 @@ func loadSurface(path string) (*sdl.Surface, error) {
 		return nil, err
 	}
 
+	// Get rid of old loaded surface
+	loadedSurface.Free()
+
 	return optimizedSurface, nil
 }
 
