@@ -80,6 +80,7 @@ func loadMedia() error {
 func close() {
 
 	window.Destroy()
+	img.Quit()
 	sdl.Quit()
 }
 
