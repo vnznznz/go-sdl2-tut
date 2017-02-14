@@ -1,5 +1,5 @@
-// Loading PNGs with SDL_image
-// Adapted from http://lazyfoo.net/tutorials/SDL/06_extension_libraries_and_loading_other_image_formats/index2.php
+// Texture Loading and Rendering
+// Adapted from http://lazyfoo.net/tutorials/SDL/07_texture_loading_and_rendering/index.php
 
 package main
 
