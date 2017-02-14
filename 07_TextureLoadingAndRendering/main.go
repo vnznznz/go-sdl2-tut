@@ -16,14 +16,13 @@ const (
 )
 
 var (
-	err              error
-	window           *sdl.Window
-	renderer         *sdl.Renderer
-	texture          *sdl.Texture
-	screenSurface    *sdl.Surface
-	stretchedSurface *sdl.Surface
-	quit             bool
-	event            sdl.Event
+	err      error
+	window   *sdl.Window
+	renderer *sdl.Renderer
+	texture  *sdl.Texture
+
+	quit  bool
+	event sdl.Event
 )
 
 func initSDL() error {
@@ -51,11 +50,6 @@ func initSDL() error {
 		return img.GetError()
 	}
 
-	screenSurface, err = window.GetSurface()
-	if err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -75,24 +69,6 @@ func loadTexture(path string) (*sdl.Texture, error) {
 	loadedSurface.Free()
 
 	return newTexture, nil
-}
-
-func loadSurface(path string) (*sdl.Surface, error) {
-
-	loadedSurface, err := img.Load(path)
-	if err != nil {
-		return nil, err
-	}
-
-	optimizedSurface, err := loadedSurface.Convert(screenSurface.Format, 0)
-	if err != nil {
-		return nil, err
-	}
-
-	// Get rid of old loaded surface
-	loadedSurface.Free()
-
-	return optimizedSurface, nil
 }
 
 func loadMedia() error {
