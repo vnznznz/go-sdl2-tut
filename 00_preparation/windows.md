@@ -29,3 +29,6 @@
     - ```go get -v github.com/veandco/go-sdl2/sdl_ttf```
     - ```go get -v github.com/veandco/go-sdl2/sdl_image```
 5. Run a example from go-sdl2 ...it should work
+
+# Other OS
+Look at the go-sdl2 install guide -> github.com/veandco/go-sdl2/
