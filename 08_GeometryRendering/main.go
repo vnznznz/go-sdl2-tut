@@ -1,5 +1,5 @@
-// Texture Loading and Rendering
-// Adapted from http://lazyfoo.net/tutorials/SDL/07_texture_loading_and_rendering/index.php
+// Geometry Rendering
+// Adapted from http://lazyfoo.net/tutorials/SDL/08_geometry_rendering/index.php
 
 package main
 
