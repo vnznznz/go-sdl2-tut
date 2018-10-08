@@ -1,3 +1,6 @@
+// The Viewport
+// Adapted from http://lazyfoo.net/tutorials/SDL/09_the_viewport/index.php
+
 package main
 
 import (
@@ -69,7 +72,7 @@ func loadTexture(path string) (*sdl.Texture, error) {
 }
 
 func loadMedia() error {
-	texture, err = loadTexture("viewport.png")
+	texture, err = loadTexture("texture.png")
 	if err != nil {
 		return err
 	}
