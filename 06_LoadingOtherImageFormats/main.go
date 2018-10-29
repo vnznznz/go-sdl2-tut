@@ -77,7 +77,7 @@ func loadMedia() error {
 	return nil
 }
 
-func close() {
+func Close() {
 
 	window.Destroy()
 	img.Quit()
@@ -114,5 +114,5 @@ func main() {
 		}
 	}
 
-	close()
+	Close()
 }
