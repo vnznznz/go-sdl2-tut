@@ -25,9 +25,9 @@
 4. Run conemu or cmd
     - Set the CGO_CFLAGS env variable, so gcc finds the SDL2 headers with set: ```set CGO_CFLAGS=-ID:\dev\mingw64\mingw64\include```
     - go get go-sdl2 -> ```go get -v github.com/veandco/go-sdl2/sdl```
-    - ```go get -v github.com/veandco/go-sdl2/sdl_mixer```
-    - ```go get -v github.com/veandco/go-sdl2/sdl_ttf```
-    - ```go get -v github.com/veandco/go-sdl2/sdl_image```
+    - ```go get -v github.com/veandco/go-sdl2/mix```
+    - ```go get -v github.com/veandco/go-sdl2/ttf```
+    - ```go get -v github.com/veandco/go-sdl2/img```
 5. Run a example from go-sdl2 ...it should work
 
 # Other OS

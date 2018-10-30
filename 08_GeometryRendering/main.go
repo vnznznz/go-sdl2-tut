@@ -7,7 +7,7 @@ import (
 	"log"
 
 	"github.com/veandco/go-sdl2/sdl"
-	"github.com/veandco/go-sdl2/sdl_image"
+	"github.com/veandco/go-sdl2/img"
 )
 
 const (
@@ -119,7 +119,7 @@ func main() {
 		renderer.DrawLine(0, screenHeight/2, screenWidth, screenHeight/2)
 
 		renderer.SetDrawColor(0xFF, 0xFF, 0x00, 0xFF)
-		for i := 0; i < screenHeight; i += 4 {
+		for i := int32(0); i < screenHeight; i += 4 {
 			renderer.DrawPoint(screenWidth/2, i)
 		}
 
