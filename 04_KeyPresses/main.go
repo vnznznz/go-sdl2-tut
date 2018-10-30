@@ -92,7 +92,7 @@ func loadMedia() error {
 	return nil
 }
 
-func close() {
+func Close() {
 
 	window.Destroy()
 	sdl.Quit()
@@ -136,5 +136,5 @@ func main() {
 		window.UpdateSurface()
 	}
 
-	close()
+	Close()
 }

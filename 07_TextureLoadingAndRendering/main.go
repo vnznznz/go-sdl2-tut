@@ -80,7 +80,7 @@ func loadMedia() error {
 	return nil
 }
 
-func close() {
+func Close() {
 	texture.Destroy()
 	renderer.Destroy()
 	window.Destroy()
@@ -113,5 +113,5 @@ func main() {
 		renderer.Present()
 	}
 
-	close()
+	Close()
 }

@@ -51,7 +51,7 @@ func loadMedia() error {
 	return nil
 }
 
-func close() {
+func Close() {
 	helloWorld.Free()
 	window.Destroy()
 	sdl.Quit()
@@ -81,5 +81,5 @@ func main() {
 		}
 	}
 
-	close()
+	Close()
 }
