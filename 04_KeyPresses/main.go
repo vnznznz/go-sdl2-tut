@@ -119,16 +119,18 @@ func main() {
 			switch t := event.(type) {
 			case *sdl.QuitEvent:
 				quit = true
-			case *sdl.KeyDownEvent:
-				switch t.Keysym.Sym {
-				case sdl.K_UP:
-					currentSurface = keyPressSurfaces[surfaceUp]
-				case sdl.K_DOWN:
-					currentSurface = keyPressSurfaces[surfaceDown]
-				case sdl.K_LEFT:
-					currentSurface = keyPressSurfaces[surfaceLeft]
-				case sdl.K_RIGHT:
-					currentSurface = keyPressSurfaces[surfaceRight]
+			case *sdl.KeyboardEvent:
+				if t.Type == sdl.KEYDOWN {
+					switch t.Keysym.Sym {
+					case sdl.K_UP:
+						currentSurface = keyPressSurfaces[surfaceUp]
+					case sdl.K_DOWN:
+						currentSurface = keyPressSurfaces[surfaceDown]
+					case sdl.K_LEFT:
+						currentSurface = keyPressSurfaces[surfaceLeft]
+					case sdl.K_RIGHT:
+						currentSurface = keyPressSurfaces[surfaceRight]
+					}
 				}
 			}
 		}
