@@ -5,29 +5,25 @@
 package main
 
 import (
-	"log"
 	"fmt"
 	"github.com/veandco/go-sdl2/sdl"
-
+	"log"
 )
 
 const (
-	screenWidth 	= 640
-	screenHeight 	= 480
-	colorKey			= 0xff00ff // C-C-C-E-C ♫
+	screenWidth  = 640
+	screenHeight = 480
+	colorKey     = 0xff00ff // C-C-C-E-C ♫
 )
-
 
 // TextureMap holds the textures and wraps loading/destroying
 type TextureMap map[string](*sdl.Texture)
 
 var (
-	window		*sdl.Window
-	renderer	*sdl.Renderer
-	textures	TextureMap = TextureMap{}
+	window   *sdl.Window
+	renderer *sdl.Renderer
+	textures TextureMap = TextureMap{}
 )
-
-
 
 // Load BMP as `name`, removing the previous texture for `name`
 func (tm TextureMap) LoadBMP(name, path string) (*sdl.Texture, error) {
@@ -36,13 +32,13 @@ func (tm TextureMap) LoadBMP(name, path string) (*sdl.Texture, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	// set color to transparent
 	err = tmp.SetColorKey(true, colorKey)
 	if err != nil {
 		log.Fatalf("Can't set color key: %s", err)
 	}
-	
+
 	// create texture
 	tex, err := renderer.CreateTextureFromSurface(tmp)
 	if err != nil {
@@ -52,14 +48,10 @@ func (tm TextureMap) LoadBMP(name, path string) (*sdl.Texture, error) {
 	// free the surface
 	tmp.Free()
 
-
-
 	// successfully loaded, replace previous texture of the same name
-	
-	
+
 	// get rid of it
 	tm.Destroy(name)
-	
 
 	// (re)assign
 	tm[name] = tex
@@ -67,24 +59,21 @@ func (tm TextureMap) LoadBMP(name, path string) (*sdl.Texture, error) {
 	return tex, err
 }
 
-
 // Remove (and free) surface from map
 func (tm TextureMap) Destroy(name string) {
 
-	
 	t, present := tm[name]
 	if present {
 		t.Destroy()
 	}
 	delete(tm, name)
-	
-}
 
+}
 
 // Remove all surfaces (free surface + remove from map)
 func (tm TextureMap) DestroyAll() {
 
-	for n := range(tm) {
+	for n := range tm {
 		delete(tm, n)
 	}
 
@@ -114,16 +103,9 @@ func (tm TextureMap) Render(name string, r *sdl.Renderer, x, y int32, clip *sdl.
 		renderRect.H = clip.H
 	}
 
-
 	return renderer.Copy(tex, clip, renderRect)
 
-
-
 }
-
-
-
-
 
 func initSDL() error {
 
@@ -149,10 +131,6 @@ func initSDL() error {
 		return err
 	}
 
-
-
-
-
 	return nil
 
 }
@@ -172,9 +150,7 @@ func teardown() {
 	}
 	sdl.Quit()
 
-
 }
-
 
 func main() {
 
@@ -182,13 +158,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error initializing SDL: %s", err)
 	}
-	
-	var w, h int32 
 
-	// make sure to clean up 
+	var w, h int32
+
+	// make sure to clean up
 	defer teardown()
-
-
 
 	// load the clip sheet image
 	_, err = textures.LoadBMP("sheet", "sheet.bmp")
@@ -198,7 +172,7 @@ func main() {
 
 	// get sheet dimensions
 	_, _, w, h, err = textures["sheet"].Query()
-	if (err != nil) {
+	if err != nil {
 		log.Fatalf("Can't query sheet texture: %s", err)
 	}
 
@@ -207,45 +181,41 @@ func main() {
 		&sdl.Rect{
 			X: 0,
 			Y: 0,
-			W: w/2,
-			H: h/2,
+			W: w / 2,
+			H: h / 2,
 		},
 		&sdl.Rect{
-			X: w/2,
+			X: w / 2,
 			Y: 0,
-			W: w/2,
-			H: h/2,
+			W: w / 2,
+			H: h / 2,
 		},
 		&sdl.Rect{
 			X: 0,
-			Y: h/2,
-			W: w/2,
-			H: h/2,
+			Y: h / 2,
+			W: w / 2,
+			H: h / 2,
 		},
 		&sdl.Rect{
-			X: w/2,
-			Y: h/2,
-			W: w/2,
-			H: h/2,
+			X: w / 2,
+			Y: h / 2,
+			W: w / 2,
+			H: h / 2,
 		},
 	}
-
-
-
 
 	// prepare rendering
 	renderer.SetDrawColor(0xff, 0xff, 0xff, 0xff)
 	renderer.Clear()
-	
+
 	// render the clips
 	textures.Render("sheet", renderer, 0, 0, clips[0]) // the easy one: top left
-	textures.Render("sheet", renderer, screenWidth - clips[1].W, 0, clips[1])
-	textures.Render("sheet", renderer, 0, screenHeight - clips[2].H, clips[2])
-	textures.Render("sheet", renderer, screenWidth - clips[3].W, screenHeight - clips[3].H, clips[3])
+	textures.Render("sheet", renderer, screenWidth-clips[1].W, 0, clips[1])
+	textures.Render("sheet", renderer, 0, screenHeight-clips[2].H, clips[2])
+	textures.Render("sheet", renderer, screenWidth-clips[3].W, screenHeight-clips[3].H, clips[3])
 
 	// and show them
 	renderer.Present()
-	
 
 	// quit on quit event and when Escape or q are pressed
 	quit := false
@@ -268,11 +238,6 @@ func main() {
 		}
 	}
 
-
-	
 	// done!
 
 }
-
-
-
